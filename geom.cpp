@@ -1,20 +1,15 @@
-﻿#include <iostream>
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.navigation.compose.rememberNavController
 
-using namespace std;
-
-int geom()
-{
-    int num[10];
-    num[0] = rand() % 6 + 1;
-    int missed = rand() % 11;
-    int a = rand() % 11 + 2;
-    cout << "What numer is missing in the progression?\nQuestion: ";
-    for (int i = 1; i < 10; i++) {
-         num[i] = num[i - 1] * a;
-         if (i != missed)
-             cout << num[i] << " ";
-         else
-             cout << "... ";   
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val navController = rememberNavController()
+            val viewModel = CardViewModel()
+            AppNavHost(navController = navController, viewModel = viewModel)
+        }
     }
-    return num[missed];
 }
